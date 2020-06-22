@@ -1,8 +1,7 @@
 use crate::all_keys::ALL_KEYS;
 use crate::color;
 use color::*;
-use rand::prelude::*;
-use wooting_sdk::rgb::{self, RgbKeyboard};
+use wooting_sdk::rgb::{RgbKeyboard};
 use wooting_sdk::Key;
 
 pub fn direct_set_key(keyboard: &mut RgbKeyboard, key: Key, color: Color) {

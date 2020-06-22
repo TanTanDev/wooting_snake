@@ -3,17 +3,37 @@ use std::thread::sleep;
 use std::time::Duration;
 
 use wooting_sdk::rgb::{self, RgbKeyboard};
-use wooting_sdk::Key;
 
 mod all_keys;
 mod color;
+mod direction;
+mod menu;
+mod snake;
+mod snake_board;
 mod utils;
+mod game;
 
 use all_keys::ALL_KEYS;
 use color::*;
-use utils::*;
 
 fn main() {
+    let mut keyboard = RgbKeyboard::default();
+    utils::clear(&mut keyboard, BLACK);
+    loop {
+        let menu_result = menu::run_menu(&mut keyboard);
+        match menu_result {
+            menu::MenuResult::Play => {
+                game::run_game(&mut keyboard);
+            }
+            menu::MenuResult::Exit => {
+                break;
+            }
+        }
+    }
+}
+
+
+fn animate_keys_demo() {
     println!(
         "Keyboard connected? {}",
         rgb::is_wooting_keyboard_connected()
@@ -41,7 +61,7 @@ fn main() {
     }
 
     utils::clear(&mut keyboard, WHITE);
-    for i in 0..1000 {
+    for _i in 0..1000 {
         utils::direct_set_key(
             &mut keyboard,
             ALL_KEYS[rng.gen_range(0, ALL_KEYS.len())],
