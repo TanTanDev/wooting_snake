@@ -10,3 +10,4 @@ edition = "2018"
 wooting-sdk = {git = "https://github.com/TanTanDev/rust-wooting-sdk.git"}
 rand = "0.7.3"
 device_query = "0.2.4"
+rodio = "0.11.0"

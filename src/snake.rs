@@ -1,13 +1,15 @@
 use crate::color;
 use crate::direction;
 use crate::snake_board;
+use crate::sound_manager;
 use crate::utils;
 
-use wooting_sdk::rgb::{RgbKeyboard};
+use wooting_sdk::rgb::RgbKeyboard;
 
 use color::Color;
 use direction::Direction;
 use snake_board::SNAKE_BOARD;
+use sound_manager::{SoundManager, SoundType};
 use std::collections::VecDeque;
 use std::thread::sleep;
 use std::time::Duration;
@@ -87,7 +89,7 @@ impl Snake {
     }
 
     // Returns the tail that was removed
-    pub fn step(&mut self) -> Option<(i32, i32)> {
+    pub fn step(&mut self, sound_manager: &mut SoundManager) -> Option<(i32, i32)> {
         let maybe_head_pos = self.positions.back();
         let mut last_head_pos = (0, 0);
         if let Some(head_pos) = maybe_head_pos {
@@ -100,14 +102,18 @@ impl Snake {
         let board_height = SNAKE_BOARD.len() as i32;
         if next_pos.1 >= board_height {
             next_pos.1 = 0;
+            sound_manager.play(SoundType::Warp);
         } else if next_pos.1 < 0 {
             next_pos.1 = board_height - 1;
+            sound_manager.play(SoundType::Warp);
         }
         let board_width = SNAKE_BOARD[0].len() as i32;
         if next_pos.0 >= board_width {
             next_pos.0 = 0;
+            sound_manager.play(SoundType::Warp);
         } else if next_pos.0 < 0 {
             next_pos.0 = board_width - 1;
+            sound_manager.play(SoundType::Warp);
         }
         self.positions.push_back(next_pos);
         if self.positions.len() > self.length as usize {

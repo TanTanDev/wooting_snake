@@ -2,28 +2,31 @@ use rand::prelude::*;
 use std::thread::sleep;
 use std::time::Duration;
 
-use wooting_sdk::rgb::{RgbKeyboard};
+use wooting_sdk::rgb::RgbKeyboard;
 
 use crate::color;
 use crate::direction;
 use crate::snake;
 use crate::snake_board;
+use crate::sound_manager;
 use crate::utils;
 
 use color::*;
+use direction::Direction;
 use snake::Snake;
 use snake_board::*;
-use direction::Direction;
+use sound_manager::{SoundManager, SoundType};
 
-pub fn run_game(keyboard: &mut RgbKeyboard){
+pub fn run_game(keyboard: &mut RgbKeyboard, sound_manager: &mut SoundManager) {
     let mut snake = Snake::new();
     let mut fruit_pos = (7, 2);
     utils::clear(keyboard, BLACK);
     loop {
-        let maybe_tail_pos = snake.step();
+        let maybe_tail_pos = snake.step(sound_manager);
         if let Some(tail_pos) = maybe_tail_pos {
             let tail_key = SNAKE_BOARD[tail_pos.1 as usize][tail_pos.0 as usize];
             utils::direct_set_key(keyboard, tail_key, BLACK);
+            sound_manager.play(SoundType::Step);
         }
 
         use device_query::{DeviceQuery, DeviceState};
@@ -44,10 +47,12 @@ pub fn run_game(keyboard: &mut RgbKeyboard){
             }
         }
         if snake.touch_snek(&fruit_pos) {
+            sound_manager.play(SoundType::Eat);
             move_fruit(&mut fruit_pos, &mut snake);
             snake.nom();
         }
         if snake.snek_is_ded() {
+            sound_manager.play(SoundType::Death);
             snake.snek_go_boom(keyboard);
             return;
         }

@@ -1,6 +1,7 @@
 use crate::color::{BLACK, GREEN, WHITE};
+use crate::sound_manager::{SoundManager, SoundType};
 use crate::utils;
-use std::time::{Instant};
+use std::time::Instant;
 use wooting_sdk::rgb::RgbKeyboard;
 
 static KEYBOARD_QUERY_TIME_MS: u128 = 20;
@@ -45,7 +46,7 @@ fn swap_state(menu_result: &mut MenuResult) {
     *menu_result = swapped_state;
 }
 
-pub fn run_menu(keyboard: &mut RgbKeyboard) -> MenuResult {
+pub fn run_menu(keyboard: &mut RgbKeyboard, sound_manager: &mut SoundManager) -> MenuResult {
     utils::clear(keyboard, BLACK);
 
     let mut menu_state = MenuResult::Play;
@@ -77,8 +78,10 @@ pub fn run_menu(keyboard: &mut RgbKeyboard) -> MenuResult {
                 Keycode::Up | Keycode::Down => {
                     swap_state(&mut menu_state);
                     draw_menu(keyboard, &mut menu_state);
+                    sound_manager.play(SoundType::Click);
                 }
                 Keycode::Enter => {
+                    sound_manager.play(SoundType::Click);
                     return menu_state;
                 }
                 _ => {}

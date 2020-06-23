@@ -7,23 +7,26 @@ use wooting_sdk::rgb::{self, RgbKeyboard};
 mod all_keys;
 mod color;
 mod direction;
+mod game;
 mod menu;
 mod snake;
 mod snake_board;
+mod sound_manager;
 mod utils;
-mod game;
 
 use all_keys::ALL_KEYS;
 use color::*;
+use sound_manager::SoundManager;
 
 fn main() {
     let mut keyboard = RgbKeyboard::default();
+    let mut sound_manager = SoundManager::new();
     utils::clear(&mut keyboard, BLACK);
     loop {
-        let menu_result = menu::run_menu(&mut keyboard);
+        let menu_result = menu::run_menu(&mut keyboard, &mut sound_manager);
         match menu_result {
             menu::MenuResult::Play => {
-                game::run_game(&mut keyboard);
+                game::run_game(&mut keyboard, &mut sound_manager);
             }
             menu::MenuResult::Exit => {
                 break;
@@ -31,7 +34,6 @@ fn main() {
         }
     }
 }
-
 
 fn animate_keys_demo() {
     println!(
