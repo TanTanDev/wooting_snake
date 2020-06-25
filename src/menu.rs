@@ -27,7 +27,7 @@ pub enum MenuResult {
 fn draw_menu(keyboard: &mut RgbKeyboard, menu_result: &MenuResult) {
     let (play_color, exit_color) = match menu_result {
         MenuResult::Play => (GREEN, WHITE),
-        MenuResult::Exit => (WHITE, GREEN),
+        MenuResult::Exit => (WHITE, RED),
     };
 
     for key in PLAY_KEYS.iter() {
