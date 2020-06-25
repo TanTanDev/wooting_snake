@@ -2,6 +2,9 @@
 A Snake game compatible with Wooting keyboards only, written with Rust
 ![](about/snake_wooting_preview.gif)
 
+### Check out the video I made about this project
+https://youtu.be/OhhscXz-60g
+
 ## Building
 > cargo run
 
