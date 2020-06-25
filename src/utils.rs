@@ -18,13 +18,3 @@ pub fn clear(keyboard: &mut RgbKeyboard, color: Color) {
     }
     keyboard.array_update();
 }
-
-pub fn column(keyboard: &mut RgbKeyboard, row_index: usize, color: Color) {
-    let start = row_index * 16;
-    let end = start + 16;
-    for key in ALL_KEYS[start..end].iter() {
-        array_set_single(keyboard, *key, color);
-    }
-
-    keyboard.array_update();
-}
