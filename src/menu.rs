@@ -1,4 +1,4 @@
-use crate::color::{BLACK, GREEN, WHITE};
+use crate::color::{BLACK, GREEN, WHITE, RED};
 use crate::sound_manager::{SoundManager, SoundType};
 use crate::utils;
 use std::time::Instant;
