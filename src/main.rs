@@ -1,5 +1,6 @@
 mod all_keys;
 mod color;
+mod constants;
 mod direction;
 mod game;
 mod menu;

@@ -43,7 +43,7 @@ impl Snake {
         self.length += 1;
     }
 
-    pub fn touch_snek(&self, pos: &(i32, i32)) -> bool {
+    pub fn touch_snek(&self, pos: (i32, i32)) -> bool {
         for (x, y) in self.positions.iter() {
             if *x == pos.0 && *y == pos.1 {
                 return true;
