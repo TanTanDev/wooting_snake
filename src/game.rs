@@ -1,7 +1,5 @@
 use device_query::{DeviceQuery, DeviceState};
 use rand::prelude::*;
-use std::thread::sleep;
-use std::time::Duration;
 use std::time::Instant;
 
 use wooting_sdk::rgb::RgbKeyboard;
