@@ -18,7 +18,7 @@ Fix: unplug / replug the keyboard, OR: starting the game again and,
 closing the game through they keyboard menu, works fine.
 
 
--- Prerequisites
+## Prerequisites
 This library uses the crate "wooting-sdk", which requires libclang to be installed, more info on it's github page: https://github.com/davidtwco/rust-wooting-sdk
 
 In order to generate bindings for the SDKs using bindgen, wooting-analog-sdk-sys and wooting-rgb-sdk-sys require libclang. If the submodules for the SDKs are not cloned, then the build scripts will attempt to clone them, in this case, git is required. When building the SDKs, libusb or libudev will be required for the SDKs' hidapi dependency on Linux, these are expected to exist.
