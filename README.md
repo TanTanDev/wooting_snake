@@ -5,11 +5,6 @@ A Snake game compatible with Wooting keyboards only, written with Rust
 ### Check out the video I made about this project
 https://youtu.be/OhhscXz-60g
 
-## Building
-> cargo run
-
-that's it... I LOVE RUST
-
 ## Known bugs
 If you close the application regulary, the lights could get "stuck".
 
@@ -25,3 +20,9 @@ In order to generate bindings for the SDKs using bindgen, wooting-analog-sdk-sys
 
 Windows
 Download and install the official pre-built binary for libclang from the LLVM download page.
+
+## Building
+> cargo run
+
+When the prerequisites are met, use cargo as any other project
+that's it... I LOVE RUST
