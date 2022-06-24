@@ -6,7 +6,7 @@ A Snake game compatible with Wooting keyboards only, written with Rust
 https://youtu.be/OhhscXz-60g
 
 ## Known bugs
-If you close the application regulary, the lights could get "stuck".
+If you close the application regularly, the lights could get "stuck".
 
 Fix: unplug / replug the keyboard, OR: starting the game again and,
 
